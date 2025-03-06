@@ -1,0 +1,24 @@
+                                      Router 3
+enable 
+configuration terminal 
+interface FastEathernet 0/0 
+ip address 192.168.80.1 255.255.255.0
+no shutdown
+exit
+interface serial 0/0/0
+ip address 192.168.20.2 255.255.255.252
+no shutdown 
+interface serial 0/0/1
+ip address 192.168.30.1 255.255.255.252
+clock rare 128000
+no shutdown 
+^z
+copy running-config startup-config
+
+
+router eigrp 10 
+network 192.168.80.0 0.0.0.255
+network 192.168.20.0 0.0.0.3
+network 192.168.30.0 0.0.0.3
+^z
+copy running-config startup-config 
